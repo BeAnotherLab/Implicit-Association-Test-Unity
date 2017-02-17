@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{9CA60EFC-CCC9-8EE3-9434-C05F16122173}") = "Implicit Association Test", "Assembly-CSharp-firstpass.csproj", "{1D106105-2ACA-DF18-C7FC-D51CF3C96B74}"
+EndProject
+Project("{9CA60EFC-CCC9-8EE3-9434-C05F16122173}") = "Implicit Association Test", "Assembly-CSharp.csproj", "{C667D4FF-DE1E-20D3-163A-10111E71FCD7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D106105-2ACA-DF18-C7FC-D51CF3C96B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D106105-2ACA-DF18-C7FC-D51CF3C96B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D106105-2ACA-DF18-C7FC-D51CF3C96B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D106105-2ACA-DF18-C7FC-D51CF3C96B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C667D4FF-DE1E-20D3-163A-10111E71FCD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C667D4FF-DE1E-20D3-163A-10111E71FCD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C667D4FF-DE1E-20D3-163A-10111E71FCD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C667D4FF-DE1E-20D3-163A-10111E71FCD7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
