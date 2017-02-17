@@ -5,7 +5,14 @@ using System.Collections.Generic;
 public class TextObject : MonoBehaviour {
 
 
-	public TextMesh central;
+	public TextMesh centralText;
+	public TextMesh topRightText;
+	public TextMesh topLeftText;
+
+	public string targetConcept1Name;
+	public string targetConcept2Name;
+	public string attributeConcept1Name;
+	public string attributeConcept2Name;
 
 	List<string> targetConcept1 = new List<string>();
 	List<string> targetConcept2 = new List<string>();
@@ -50,9 +57,8 @@ public class TextObject : MonoBehaviour {
 
 		currentTrial = 1;
 		Debug.Log ("starting category is " + currentTrial);
-
-		//instrucciones.
-		//TextMesh instrucciones = gameObject.AddComponent("TextMesh") as TextMesh.text("Put a left finger on the S key for items that belong to the category Women \n Put a right finger on the L key for items that belong to the category Men");
+									
+			
 	}
 		
 
@@ -60,10 +66,76 @@ public class TextObject : MonoBehaviour {
 
 		if (currentTrial > 7)
 			GetComponent<TextMesh> ().text = "You're done";
-		
+
+
+		if (!correct) {
+			if(Input.GetKeyDown ("space")) {
+				StartCoroutine(TrialRoutine);
+			}
+		}
 		if (onStandby == true){
-		//	GetComponent<TextMesh> ().text = "Press the space key to continue";
-			central.text = "Press the space key to continue";
+
+			centralText.color = Color.white;
+			centralText.fontSize = 24;
+			centralText.offsetZ = 65;
+
+			if (currentTrial == 1)	
+				centralText.text = 
+					"PART 1 OF 7 \n \n __ \n \n \n \n Put a left finger on the S key for items that belong to the category " + targetConcept1Name +
+					". \n \n Put a right finger on the L key for items that belong to the category " + targetConcept2Name +
+					" \n \n If you make a mistake a red X will appear. Press the space key to continue." +
+					" \n \n GO AS FAST AS YOU CAN WHILE BEING ACCURATE." +
+					" \n \n \n \n Press the space bar when you are ready to start.";
+			
+			if (currentTrial == 2) 	
+				centralText.text = 
+					"PART 2 OF 7 \n \n  __ \n \n \n \n Put a left finger on the S key for items that belong to the category " + attributeConcept1Name +
+					". \n \n Put a right finger on the L key for items that belong to the category " + attributeConcept2Name +
+					" \n \n If you make a mistake a red X will appear. Press the space key to continue." +
+					" \n \n GO AS FAST AS YOU CAN WHILE BEING ACCURATE." +
+					" \n \n \n \n Press the space bar when you are ready to start.";
+			
+
+			if (currentTrial == 3)
+				centralText.text = 
+					"PART 2 OF 7 \n\n   __ \n \n \n \n Put a left finger on the S key for items that belong to the category " + targetConcept1Name + "or " + attributeConcept1Name +
+					". \n \n Put a right finger on the L key for items that belong to the category " + targetConcept2Name + "or " + attributeConcept2Name +
+					" \n \n If you make a mistake a red X will appear. Press the space key to continue." +
+					" \n \n GO AS FAST AS YOU CAN WHILE BEING ACCURATE." +
+					" \n \n \n \n Press the space bar when you are ready to start.";
+			///
+			if (currentTrial == 4)
+				centralText.text = 
+					"PART 2 OF 7 \n \n __ \n \n \n \n Put a left finger on the S key for items that belong to the category " + targetConcept1Name + "or " + attributeConcept1Name +
+					". \n \n Put a right finger on the L key for items that belong to the category " + targetConcept2Name + "or " + attributeConcept2Name +
+					" \n \n If you make a mistake a red X will appear. Press the space key to continue." +
+					" \n \n GO AS FAST AS YOU CAN WHILE BEING ACCURATE." +
+					" \n \n \n \n Press the space bar when you are ready to start.";
+
+			if (currentTrial == 5)
+				centralText.text = 
+					"PART 1 OF 7 \n \n __ \n \n \n \n Put a left finger on the S key for items that belong to the category " + attributeConcept2Name +
+					". \n \n Put a right finger on the L key for items that belong to the category " + attributeConcept2Name +
+					" \n \n If you make a mistake a red X will appear. Press the space key to continue." +
+					" \n \n GO AS FAST AS YOU CAN WHILE BEING ACCURATE." +
+					" \n \n \n \n Press the space bar when you are ready to start.";
+
+			if (currentTrial == 6)
+				centralText.text = 
+					"PART 2 OF 7 \n \n __ \n \n \n \n Put a left finger on the S key for items that belong to the category " + targetConcept1Name + "or " + attributeConcept2Name +
+					". \n \n Put a right finger on the L key for items that belong to the category " + targetConcept2Name + "or " + attributeConcept1Name +
+					" \n \n If you make a mistake a red X will appear. Press the space key to continue." +
+					" \n \n GO AS FAST AS YOU CAN WHILE BEING ACCURATE." +
+					" \n \n \n \n Press the space bar when you are ready to start.";
+
+			if (currentTrial == 7)
+				centralText.text = 
+					"PART 2 OF 7 \n \n __ \n \n \n \n Put a left finger on the S key for items that belong to the category " + targetConcept1Name + "or " + attributeConcept2Name +
+					". \n \n Put a right finger on the L key for items that belong to the category " + targetConcept2Name + "or " + attributeConcept1Name +
+					" \n \n If you make a mistake a red X will appear. Press the space key to continue." +
+					" \n \n GO AS FAST AS YOU CAN WHILE BEING ACCURATE." +
+					" \n \n \n \n Press the space bar when you are ready to start.";
+			
 			if(Input.GetKeyDown ("space")) {
 				StartCoroutine(TrialRoutine);
 				onStandby = false;
@@ -146,7 +218,11 @@ public class TextObject : MonoBehaviour {
 	/// /
 	/// </summary>
 	IEnumerator Trial(List<string> primeraLista, List<string> segundaLista, List<string> terceraLista, List<string> cuartaLista){
-		
+
+		centralText.offsetZ = 40;
+		centralText.fontSize = 24;
+		centralText.color = Color.white;
+
 		correct = false;
 
 		currentCategory = Random.Range (1, 2 + 1);
@@ -155,16 +231,16 @@ public class TextObject : MonoBehaviour {
 
 		if (currentCategory == 1) {
 			if (randomListAmongCategory == 1)
-				GetComponent<TextMesh> ().text = primeraLista [valueRandomizer];
+				centralText.text = primeraLista [valueRandomizer];
 			else if (randomListAmongCategory == 2)
-				GetComponent<TextMesh> ().text = terceraLista [valueRandomizer];
+				centralText.text = terceraLista [valueRandomizer];
 		} 
 
 		else if (currentCategory == 2) {
 			if (randomListAmongCategory == 1)
-				GetComponent<TextMesh> ().text = segundaLista [valueRandomizer];
+				centralText.text = segundaLista [valueRandomizer];
 			else if (randomListAmongCategory == 2)
-				GetComponent<TextMesh> ().text = cuartaLista [valueRandomizer];
+				centralText.text = cuartaLista [valueRandomizer];
 		}
 		float currentTime = Time.fixedTime;
 		
@@ -195,11 +271,12 @@ public class TextObject : MonoBehaviour {
 
 		if (correct)
 			Debug.Log ("Elapsed time for last stimulus " + elapsedTime);
-		else
-			Debug.Log ("Wrong answer");
-		
-
-		onStandby = !correct;
+		else if (!correct) {
+			centralText.fontSize = 96;
+			centralText.offsetZ = 20;
+			centralText.color = Color.red;
+			centralText.text = "X";
+		}
 	}
 		
 

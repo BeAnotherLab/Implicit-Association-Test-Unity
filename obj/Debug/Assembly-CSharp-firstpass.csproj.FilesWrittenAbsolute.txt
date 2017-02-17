@@ -15,3 +15,20 @@
 /Users/marte/Projects/Unity/Implicit Association Test/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/marte/Projects/Unity/Implicit Association Test/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/marte/Projects/Unity/Implicit Association Test/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/obj/Debug/Assembly-CSharp-firstpass.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/obj/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/UnityEngine.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/UnityEditor.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Mono.Cecil.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Unity.DataContract.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/marte/Projects/Unity/Implicit Association Test Unity/Temp/bin/Debug/Mono.Cecil.Mdb.dll
