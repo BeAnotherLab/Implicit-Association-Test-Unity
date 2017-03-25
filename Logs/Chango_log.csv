@@ -1,0 +1,69 @@
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+Chango,1,Men,1,2.08,True
+Chango,1,Men,2,0.6800003,True
+Chango,1,Women,3,1.3,True
+Chango,2,Bad,2,3.04,True
+Chango,2,Men,2,4.98,True
+Chango,2,Good,3,1.8,True
+Chango,2,Good,3,0.9800005,True
+subject ID,current section,current category,current stimulus,time,correct
+Chango,1,Women,3,1.74,False
+Chango,1,Men,2,3.02,False
+Chango,1,Women,1,3.240001,False
+Chango,1,Men,3,3.38,False
+Chango,1,Men,0,3.5,False
+Chango,1,Men,0,3.64,False
+Chango,1,Men,2,3.780001,False
+Chango,1,Women,2,3.900001,False
+Chango,1,Women,0,4.04,False
+Chango,1,Men,2,4.200001,False
+Chango,1,Women,3,4.360001,False
+Chango,1,Men,3,4.54,False
+Chango,1,Women,1,4.72,False
+Chango,1,Men,2,4.900001,False
+Chango,1,Men,3,5.06,False
+Chango,1,Men,0,5.280001,False
+Chango,1,Women,2,5.46,False
+Chango,1,Women,3,5.6,False
+Chango,1,Women,2,5.780001,False
+Chango,1,Women,2,6.200001,False
+Chango,1,Women,3,6.48,False
+Chango,1,Women,3,6.72,False
+Chango,1,Women,3,6.88,False
+Chango,1,Women,1,7.18,False
+Chango,1,Women,2,7.440001,False
+Chango,1,Women,3,7.740001,False
+Chango,1,Men,0,8.04,False
+Chango,1,Women,0,8.320001,False
+Chango,1,Men,3,8.72,False
+Chango,1,Women,2,9.02,False
+Chango,1,Men,2,9.400001,False
+Chango,1,Men,1,9.76,False
+Chango,1,Men,3,12.08,False
+Chango,1,Men,3,2.360001,True
+Chango,1,Men,1,1.02,True
+Chango,1,Women,3,1.76,False
+Chango,1,Women,1,0.7799988,True
+Chango,2,Good,1,0.9599991,True
+Chango,2,Women,0,4.76,True
+Chango,2,Bad,3,0.7999992,True
+Chango,2,Bad,0,2.059998,True
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+subject ID,current section,current category,current stimulus,time,correct
+Chango,1,Women,valueRandomizer.ToString(),2.06,True
+Chango,1,Women,valueRandomizer.ToString(),1.740001,True
+Chango,1,Women,valueRandomizer.ToString(),1.099999,True
