@@ -67,3 +67,47 @@ subject ID,current section,current category,current stimulus,time,correct
 Chango,1,Women,valueRandomizer.ToString(),2.06,True
 Chango,1,Women,valueRandomizer.ToString(),1.740001,True
 Chango,1,Women,valueRandomizer.ToString(),1.099999,True
+subject ID,current section,current category,current stimulus,time,correct
+Chango,1,mujeres,Mariana,1.52,True
+Chango,1,mujeres,Ana,0.6599998,True
+Chango,1,mujeres,Elsa,0.5799999,True
+Chango,2,bien,Agradable,0.98,True
+Chango,2,hombres,Agradable,1.9,True
+Chango,2,mal,Desagradable,2.64,False
+Chango,2,bien,Bondad,1.26,True
+Chango,2,mal,Repugnante,0.6999998,True
+subject ID,current section,current category,current stimulus,time,correct
+Chango,1,mujeres,Lucia,2.72,True
+Chango,1,mujeres,Camila,1.12,True
+Chango,1,hombres,Samuel,0.8599997,True
+Chango,1,hombres,Miguel,0.9400001,True
+Chango,1,hombres,Juan,1.1,True
+Chango,1,hombres,Samuel,0.96,True
+Chango,1,hombres,Roberto,0.6599998,True
+subject ID,current section,current category,current stimulus,time,correct
+Chango,1,mujeres,Maria,1.36,True
+Chango,1,mujeres,Mariana,0.8199999,True
+Chango,1,mujeres,Adela,0.98,True
+Chango,1,hombres,Jose,0.6199999,True
+subject ID,current section,current category,current stimulus,time,correct
+Chango,1,mujeres,Maria,0.7399999,True
+Chango,1,hombres,Miguel,0.8399999,True
+Chango,1,hombres,Carlitos,0.72,True
+Chango,1,mujeres,Adela,0.8399999,False
+Chango,1,hombres,Carlitos,1.1,True
+Chango,1,mujeres,Xymena,0.6399999,True
+Chango,1,mujeres,Sara,0.6600003,True
+Chango,1,mujeres,Ana,0.6399994,True
+Chango,1,mujeres,Lucia,0.7399998,True
+Chango,1,hombres,Bernardo,0.6799994,True
+Chango,1,mujeres,Xymena,0.7200003,True
+Chango,1,hombres,Samuel,0.8399992,True
+Chango,1,hombres,Bernardo,0.7799997,True
+Chango,1,mujeres,Elsa,1.12,True
+Chango,1,hombres,Jose,1.099999,True
+Chango,1,hombres,Roberto,0.9400005,True
+Chango,1,mujeres,Xymena,0.7400007,True
+Chango,1,hombres,Miguel,0.8599987,True
+Chango,1,hombres,Pedro,0.9200001,True
+Chango,1,mujeres,Ilda,1.119999,True
+Chango,1,mujeres,Adela,0.8400002,True

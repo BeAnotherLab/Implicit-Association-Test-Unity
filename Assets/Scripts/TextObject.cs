@@ -10,12 +10,9 @@ public class TextObject : MonoBehaviour {
 
 	public string subjectID;
 
-	public string targetConcept1List;
-	public string targetConcept2List;
-	public string attributeConcept1List;
-	public string attributeConcept2List;
+	public int stimuliPerTrial;
 
-	public string targetConcept1Name, targetConcept2Name, attributeConcept1Name, attributeConcept2Name ;
+	public string targetConcept1Name, targetConcept2Name, attributeConcept1Name, attributeConcept2Name;
 
 	List<string> targetConcept1 = new List<string>();
 	List<string> targetConcept2 = new List<string>();
@@ -29,7 +26,6 @@ public class TextObject : MonoBehaviour {
 	private int currentSide; //1 = left, 2 = right
 	private int currentTrial;
 	private int count = 0;
-	//private int stimuliLenght = 8;
 
 	private float elapsedTime;
 
@@ -37,21 +33,21 @@ public class TextObject : MonoBehaviour {
 
 	private string instructionsMessage;
 
-
 	private IEnumerator TrialRoutine;
 
 
 	void Start () {
 
-		Load (targetConcept1List, targetConcept1);
-		Load (targetConcept2List, targetConcept2);
-		Load (attributeConcept1List, attributeConcept1);
-		Load (attributeConcept2List, attributeConcept2);
+		Load (targetConcept1Name, targetConcept1);
+		Load (targetConcept2Name, targetConcept2);
+		Load (attributeConcept1Name, attributeConcept1);
+		Load (attributeConcept2Name, attributeConcept2);
 
 	//	Debug.Log(targetConcept1[3]);
 
 
 		currentTrial = 1;
+
 		Debug.Log ("starting category is " + currentTrial);
 
 		WriteToFile ("subject ID", "current section", "current category", "current stimulus", "time", "correct");	
@@ -61,12 +57,6 @@ public class TextObject : MonoBehaviour {
 
 	void Update(){
 
-		//string textee = System.IO.File.OpenText ("\"./Files/" + "csvita.csv");
-		//string[] lineas = textee.Split ("\n");
-
-
-
-		//WriteToFile ();
 
 		if (currentTrial > 7)
 			GetComponent<TextMesh> ().text = "You're done";
@@ -161,7 +151,7 @@ public class TextObject : MonoBehaviour {
 	void DoneWithSet(List<string> primeraLista, List<string> segundaLista, List<string> terceraLista, List<string> cuartaLista){
 
 		if (currentTrial != 4 && currentTrial != 7) {
-			if (count == 3) {
+			if (count == stimuliPerTrial) { 
 				currentTrial = currentTrial + 1;
 				count = 0;
 				onStandby = true;
@@ -169,7 +159,7 @@ public class TextObject : MonoBehaviour {
 		}
 
 		else {
-			if (count == 6) {
+			if (count == stimuliPerTrial * 2) {
 				currentTrial = currentTrial + 1;
 				count = 0;
 				onStandby = true;
@@ -192,29 +182,26 @@ public class TextObject : MonoBehaviour {
 
 		correct = false;
 
-		int tamano = primeraLista.Count;
-		Debug.Log ("Size of list is " + tamano);
-
 		currentSide = Random.Range (1, 2 + 1);
-		//int valueRandomizer;//Random.Range (0, stimuliLenght + 1); // esto debe de ir después por si las categorías son de tamaños distintos
+
 		int randomCategoryAmongGroup = Random.Range (1, 2+1);
 
 		if (currentSide == 1) {
 			if (randomCategoryAmongGroup == 1) {
-				centralText.text = primeraLista [Random.Range (0, primeraLista.Count+1)];
+				centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
 				currentCategoryName = primeraListaName;
 			}
 			else
-				centralText.text = terceraLista [Random.Range (0, terceraLista.Count+1)];
+				centralText.text = terceraLista [Random.Range (0, terceraLista.Count)];
 				currentCategoryName = terceraListaName;
 		} 
 
 		else if (currentSide == 2) {
 			if (randomCategoryAmongGroup == 1) {
-				centralText.text = segundaLista [Random.Range (0, segundaLista.Count+1)];
+				centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
 				currentCategoryName = segundaListaName;
 			} else {
-				centralText.text = cuartaLista [Random.Range (0, cuartaLista.Count+1)];
+				centralText.text = cuartaLista [Random.Range (0, cuartaLista.Count)];
 				currentCategoryName = cuartaListaName;
 			}
 		}
@@ -296,7 +283,7 @@ public class TextObject : MonoBehaviour {
 			string line;
 			// Create a new StreamReader, tell it which file to read and what encoding the file
 			// was saved as
-			StreamReader theReader = new StreamReader("./Assets/Lists/" + fileName, Encoding.Default);
+			StreamReader theReader = new StreamReader("./Assets/Lists/" + fileName + ".csv", Encoding.Default);
 			// Immediately clean up the reader after this block of code is done.
 			// You generally use the "using" statement for potentially memory-intensive objects
 			// instead of relying on garbage collection.
@@ -344,8 +331,8 @@ public class TextObject : MonoBehaviour {
 	/// Writes to file.
 	/// </summary>
 
-	void WriteToFile(string a, string b, string c, string d, string e, string f)
-	{
+	void WriteToFile(string a, string b, string c, string d, string e, string f){
+
 		stringLine = a + "," + b + "," + c + "," + d + "," + e + "," + f;
 
 		System.IO.StreamWriter file = new System.IO.StreamWriter("./Logs/" + subjectID + "_log.csv", true);
