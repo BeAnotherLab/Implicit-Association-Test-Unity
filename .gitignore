@@ -25,3 +25,6 @@ sysinfo.txt
 *.jpg
 *.jpeg
 *.png
+*.jpg.meta
+*.jpeg.meta
+*.png.meta
