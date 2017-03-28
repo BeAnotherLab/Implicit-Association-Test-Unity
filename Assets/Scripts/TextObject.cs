@@ -7,13 +7,13 @@ using System.IO;
 public class TextObject : MonoBehaviour {
 		
 	public TextMesh centralText, topRightText, topLeftText;
-	public string targetConcept1Name, targetConcept2Name, attributeConcept1Name, attributeConcept2Name;
+	public Renderer square;
+	public string attributeConcept1Name, attributeConcept2Name; 	
+	public string targetConcept1, targetConcept2;//image folders
+
 
 	public string subjectID;
 	public int stimuliPerTrial;
-	public Renderer square;
-	public bool usingImages = true;
-
 
 	List<string> attributeConcept1 = new List<string>();
 	List<string> attributeConcept2 = new List<string>();
@@ -65,7 +65,7 @@ public class TextObject : MonoBehaviour {
 			}
 		}
 
-		if (onStandby == true){
+		if (onStandby == true) {
 			centralText.fontSize = 24;
 			centralText.offsetZ = 65;
 			centralText.color = Color.white;
@@ -73,25 +73,25 @@ public class TextObject : MonoBehaviour {
 
 
 			if (currentTrial == 1) 
-				InstructionsText (targetConcept1Name, null, targetConcept2Name, null, false);
+				InstructionsText (targetConcept1, null, targetConcept2, null, false);
 
 			if (currentTrial == 2) 
 				InstructionsText (attributeConcept1Name, null, attributeConcept2Name, null, false);
 
 			if (currentTrial == 3) 
-				InstructionsText (targetConcept1Name, attributeConcept1Name, targetConcept2Name, attributeConcept2Name, true);
+				InstructionsText (targetConcept1, attributeConcept1Name, targetConcept2, attributeConcept2Name, true);
 			
 			if (currentTrial == 4) 
-				InstructionsText (targetConcept1Name, attributeConcept1Name, targetConcept2Name, attributeConcept2Name, true);
+				InstructionsText (targetConcept1, attributeConcept1Name, targetConcept2, attributeConcept2Name, true);
 	
 			if (currentTrial == 5)
 				InstructionsText (attributeConcept2Name, null, attributeConcept1Name, null, false);
 
 			if (currentTrial == 6)
-				InstructionsText (targetConcept1Name, attributeConcept2Name, targetConcept2Name, attributeConcept1Name, true);
+				InstructionsText (targetConcept1, attributeConcept2Name, targetConcept2, attributeConcept1Name, true);
 			
 			if (currentTrial == 7)
-				InstructionsText (targetConcept1Name, attributeConcept2Name, targetConcept2Name, attributeConcept1Name, true);
+				InstructionsText (targetConcept1, attributeConcept2Name, targetConcept2, attributeConcept1Name, true);
 			
 			
 			if(Input.GetKeyDown ("space")) {
@@ -183,14 +183,14 @@ public class TextObject : MonoBehaviour {
 
 		currentSide = Random.Range (1, 2 + 1);
 		int randomCategoryAmongGroup = 1;
-		int randomImage = Random.Range (1, 8);
+
 
 		if (currentTrial == 1) {
 
 			if (currentSide ==1)
-				conceptTexture = Resources.Load ("Images/targetConcept1/image" + randomImage) as Texture2D;
+				conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept1 + "/").Length)) as Texture2D;
 			else
-				conceptTexture = Resources.Load ("Images/targetConcept2/image" + randomImage) as Texture2D;
+				conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept2 + "/").Length)) as Texture2D;
 			
 			square.enabled = true;
 			square.material.mainTexture = conceptTexture;
@@ -207,7 +207,7 @@ public class TextObject : MonoBehaviour {
 		if (currentTrial == 3 | currentTrial == 4) {
 			if (currentSide == 1) {
 				if (randomCategoryAmongGroup == 1) {
-					conceptTexture = Resources.Load ("Images/targetConcept1/image" + randomImage) as Texture2D;
+					conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept1 + "/").Length)) as Texture2D;
 					square.enabled = true;
 					square.material.mainTexture = conceptTexture;
 				}
@@ -219,7 +219,7 @@ public class TextObject : MonoBehaviour {
 			else if (currentSide == 2) {
 				
 				if (randomCategoryAmongGroup == 1) {
-					conceptTexture = Resources.Load ("Images/targetConcept2/image" + randomImage) as Texture2D;
+					conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept2 + "/").Length)) as Texture2D;
 					square.enabled = true;
 					square.material.mainTexture = conceptTexture;
 				}
@@ -239,7 +239,7 @@ public class TextObject : MonoBehaviour {
 		if (currentTrial == 6 | currentTrial == 8) {
 			if (currentSide == 1) {
 				if (randomCategoryAmongGroup == 1) {
-					conceptTexture = Resources.Load ("Images/targetConcept1/image" + randomImage) as Texture2D;
+					conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept1 + "/").Length)) as Texture2D;
 					square.enabled = true;
 					square.material.mainTexture = conceptTexture;
 				}
@@ -251,7 +251,7 @@ public class TextObject : MonoBehaviour {
 			else if (currentSide == 2) {
 
 				if (randomCategoryAmongGroup == 1) {
-					conceptTexture = Resources.Load ("Images/targetConcept2/image" + randomImage) as Texture2D;
+					conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept2 + "/").Length)) as Texture2D;
 					square.enabled = true;
 					square.material.mainTexture = conceptTexture;
 				}
@@ -341,7 +341,7 @@ public class TextObject : MonoBehaviour {
 			string line;
 			// Create a new StreamReader, tell it which file to read and what encoding the file
 			// was saved as
-			StreamReader theReader = new StreamReader("./Assets/Lists/" + fileName + ".csv", Encoding.Default);
+			StreamReader theReader = new StreamReader("./Assets/Resources/Lists/" + fileName + ".csv", Encoding.Default);
 			// Immediately clean up the reader after this block of code is done.
 			// You generally use the "using" statement for potentially memory-intensive objects
 			// instead of relying on garbage collection.
