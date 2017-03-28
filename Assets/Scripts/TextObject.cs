@@ -7,15 +7,13 @@ using System.IO;
 public class TextObject : MonoBehaviour {
 		
 	public TextMesh centralText, topRightText, topLeftText;
-
-	public string subjectID;
-
-	public int stimuliPerTrial;
-
 	public string targetConcept1Name, targetConcept2Name, attributeConcept1Name, attributeConcept2Name;
 
-	List<string> targetConcept1 = new List<string>();
-	List<string> targetConcept2 = new List<string>();
+	public string subjectID;
+	public int stimuliPerTrial;
+	public Renderer square;
+	public bool usingImages = true;
+
 
 	List<string> attributeConcept1 = new List<string>();
 	List<string> attributeConcept2 = new List<string>();
@@ -30,21 +28,19 @@ public class TextObject : MonoBehaviour {
 	private float elapsedTime;
 
 	private string stringLine;
-
 	private string instructionsMessage;
+
+	private Texture2D conceptTexture;
 
 	private IEnumerator TrialRoutine;
 
 
 	void Start () {
-
-		Load (targetConcept1Name, targetConcept1);
-		Load (targetConcept2Name, targetConcept2);
+		
 		Load (attributeConcept1Name, attributeConcept1);
 		Load (attributeConcept2Name, attributeConcept2);
 
 	//	Debug.Log(targetConcept1[3]);
-
 
 		currentTrial = 1;
 
@@ -52,6 +48,7 @@ public class TextObject : MonoBehaviour {
 
 		WriteToFile ("subject ID", "current section", "current category", "current stimulus", "time", "correct");	
 
+		square.enabled = false;
 	}
 		
 
@@ -72,6 +69,7 @@ public class TextObject : MonoBehaviour {
 			centralText.fontSize = 24;
 			centralText.offsetZ = 65;
 			centralText.color = Color.white;
+			square.enabled = false;
 
 
 			if (currentTrial == 1) 
@@ -106,40 +104,41 @@ public class TextObject : MonoBehaviour {
 			count = count + 1;
 			StartCoroutine(TrialRoutine);
 		}
+			
 
 		if (currentTrial == 1) {
-			DoneWithSet (targetConcept1, targetConcept2, targetConcept1, targetConcept2);
-			TrialRoutine = Trial (targetConcept1, targetConcept2, targetConcept1, targetConcept2, targetConcept1Name, targetConcept2Name, targetConcept1Name, targetConcept2Name);
+			DoneWithSet();
+			TrialRoutine = Trial (null, null);
 		}
 
 		if (currentTrial == 2){
-			DoneWithSet (attributeConcept1, attributeConcept2, attributeConcept1, attributeConcept2);
-			TrialRoutine = Trial (attributeConcept1, attributeConcept2, attributeConcept1, attributeConcept2, attributeConcept1Name, attributeConcept2Name, attributeConcept1Name, attributeConcept2Name);
+			DoneWithSet ();
+			TrialRoutine = Trial (attributeConcept1, attributeConcept2);
 		}
 
 		if (currentTrial == 3){
-			DoneWithSet (targetConcept1, targetConcept2, attributeConcept1, attributeConcept2);
-			TrialRoutine = Trial (targetConcept1, targetConcept2, attributeConcept1, attributeConcept2, targetConcept1Name, targetConcept2Name, attributeConcept1Name, attributeConcept2Name);
+			DoneWithSet ();
+			TrialRoutine = Trial (attributeConcept1, attributeConcept2);
 		}
 
 		if (currentTrial == 4){
-			DoneWithSet (targetConcept1, targetConcept2, attributeConcept1, attributeConcept2); 
-			TrialRoutine = Trial (targetConcept1, targetConcept2, attributeConcept1, attributeConcept2, targetConcept1Name, targetConcept2Name, attributeConcept1Name, attributeConcept2Name);
+			DoneWithSet (); 
+			TrialRoutine = Trial (attributeConcept1, attributeConcept2);
 		}
 
 		if (currentTrial == 5){ 
-			DoneWithSet (attributeConcept2, attributeConcept1, attributeConcept2, attributeConcept1);
-			TrialRoutine = Trial (attributeConcept2, attributeConcept1, attributeConcept2, attributeConcept1, attributeConcept2Name, attributeConcept1Name, attributeConcept2Name, attributeConcept1Name);
+			DoneWithSet ();
+			TrialRoutine = Trial (attributeConcept2, attributeConcept1);
 		}
 
 		if (currentTrial == 6){
-			DoneWithSet (targetConcept1, targetConcept2, attributeConcept2, attributeConcept1);
-			TrialRoutine = Trial (targetConcept1, targetConcept2, attributeConcept2, attributeConcept1, targetConcept1Name, targetConcept2Name, attributeConcept2Name, attributeConcept1Name);
+			DoneWithSet ();
+			TrialRoutine = Trial (attributeConcept2, attributeConcept1);
 		}
 
 		if (currentTrial == 7){
-			DoneWithSet (targetConcept1, targetConcept2, attributeConcept2, attributeConcept1);
-			TrialRoutine = Trial (targetConcept1, targetConcept2, attributeConcept2, attributeConcept1, targetConcept1Name, targetConcept2Name, attributeConcept2Name, attributeConcept1Name);
+			DoneWithSet ();
+			TrialRoutine = Trial (attributeConcept2, attributeConcept1);
 		}
 	}
 
@@ -148,7 +147,7 @@ public class TextObject : MonoBehaviour {
 	/// WHENEVER A FULL SET IS FINISHED
 	/// </summary>
 
-	void DoneWithSet(List<string> primeraLista, List<string> segundaLista, List<string> terceraLista, List<string> cuartaLista){
+	void DoneWithSet(){
 
 		if (currentTrial != 4 && currentTrial != 7) {
 			if (count == stimuliPerTrial) { 
@@ -171,9 +170,9 @@ public class TextObject : MonoBehaviour {
 	/// <summary>
 	/// EVERY TEST TRIAL RUNS HERE
 	/// </summary>
-	IEnumerator Trial(List<string> primeraLista, List<string> segundaLista, List<string> terceraLista, List<string> cuartaLista, 
-		string primeraListaName, string segundaListaName, string terceraListaName, string cuartaListaName){
+	IEnumerator Trial(List<string> primeraLista, List<string> segundaLista){
 
+		centralText.text = null;
 		centralText.offsetZ = 40;
 		centralText.fontSize = 24;
 		centralText.color = Color.white;
@@ -183,26 +182,81 @@ public class TextObject : MonoBehaviour {
 		correct = false;
 
 		currentSide = Random.Range (1, 2 + 1);
+		int randomCategoryAmongGroup = 1;
+		int randomImage = Random.Range (1, 8);
 
-		int randomCategoryAmongGroup = Random.Range (1, 2+1);
+		if (currentTrial == 1) {
 
-		if (currentSide == 1) {
-			if (randomCategoryAmongGroup == 1) {
-				centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
-				currentCategoryName = primeraListaName;
-			}
+			if (currentSide ==1)
+				conceptTexture = Resources.Load ("Images/targetConcept1/image" + randomImage) as Texture2D;
 			else
-				centralText.text = terceraLista [Random.Range (0, terceraLista.Count)];
-				currentCategoryName = terceraListaName;
-		} 
+				conceptTexture = Resources.Load ("Images/targetConcept2/image" + randomImage) as Texture2D;
+			
+			square.enabled = true;
+			square.material.mainTexture = conceptTexture;
+		}
 
-		else if (currentSide == 2) {
-			if (randomCategoryAmongGroup == 1) {
+		if (currentTrial == 2) {
+
+			if (currentSide == 1)
+				centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
+			else
 				centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
-				currentCategoryName = segundaListaName;
-			} else {
-				centralText.text = cuartaLista [Random.Range (0, cuartaLista.Count)];
-				currentCategoryName = cuartaListaName;
+		}
+
+		if (currentTrial == 3 | currentTrial == 4) {
+			if (currentSide == 1) {
+				if (randomCategoryAmongGroup == 1) {
+					conceptTexture = Resources.Load ("Images/targetConcept1/image" + randomImage) as Texture2D;
+					square.enabled = true;
+					square.material.mainTexture = conceptTexture;
+				}
+				if (randomCategoryAmongGroup == 2)
+					centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
+
+			} 
+
+			else if (currentSide == 2) {
+				
+				if (randomCategoryAmongGroup == 1) {
+					conceptTexture = Resources.Load ("Images/targetConcept2/image" + randomImage) as Texture2D;
+					square.enabled = true;
+					square.material.mainTexture = conceptTexture;
+				}
+				if (randomCategoryAmongGroup == 2)
+					centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
+			}
+		}
+
+		if (currentTrial == 5) {
+			if (currentSide == 1)
+				centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
+			else
+				centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
+		}
+
+
+		if (currentTrial == 6 | currentTrial == 8) {
+			if (currentSide == 1) {
+				if (randomCategoryAmongGroup == 1) {
+					conceptTexture = Resources.Load ("Images/targetConcept1/image" + randomImage) as Texture2D;
+					square.enabled = true;
+					square.material.mainTexture = conceptTexture;
+				}
+				if (randomCategoryAmongGroup == 2)
+					centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
+
+			} 
+
+			else if (currentSide == 2) {
+
+				if (randomCategoryAmongGroup == 1) {
+					conceptTexture = Resources.Load ("Images/targetConcept2/image" + randomImage) as Texture2D;
+					square.enabled = true;
+					square.material.mainTexture = conceptTexture;
+				}
+				if (randomCategoryAmongGroup == 2)
+					centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
 			}
 		}
 
@@ -213,9 +267,9 @@ public class TextObject : MonoBehaviour {
 			yield return null;
 		}
 			
-			if (currentSide == 1) {
+		if (currentSide == 1) {
 				
-				if (Input.GetKeyDown ("s")) 
+				if (Input.GetKeyDown ("s"))
 					correct = true;  
 				else if (Input.GetKeyDown ("l"))
 					correct = false;
@@ -237,6 +291,8 @@ public class TextObject : MonoBehaviour {
 			
 		WriteToFile (subjectID, currentTrial.ToString(), currentCategoryName, centralText.text, elapsedTime.ToString(), correct.ToString()); 
 
+		square.enabled = false;
+
 		if (!correct) {
 			centralText.fontSize = 96;
 			centralText.offsetZ = 20;
@@ -245,6 +301,8 @@ public class TextObject : MonoBehaviour {
 		}
 
 	}
+
+
 
 
 	public void InstructionsText(string leftInput, string leftInput2, string rightInput, string rightInput2, bool isDoubleInput){
@@ -341,5 +399,3 @@ public class TextObject : MonoBehaviour {
 	}
 
 }
-
-		

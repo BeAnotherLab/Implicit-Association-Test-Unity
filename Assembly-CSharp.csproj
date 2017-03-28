@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\TextObject.cs" />
      <Compile Include="Assets\Scripts\csvReader.cs" />
+     <Compile Include="Assets\Scripts\images.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
