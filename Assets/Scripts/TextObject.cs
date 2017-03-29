@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
+/// <summary>
+/// /BUG, SPACE GOES TO THE FOLLOWING STIMULUS BUT SHOULDN'T
+/// </summary>
 public class TextObject : MonoBehaviour {
 		
 	public TextMesh centralText, topRightText, topLeftText;
 	public Renderer square;
 	public string attributeConcept1Name, attributeConcept2Name; 	
 	public string targetConcept1, targetConcept2;//image folders
-
 
 	public string subjectID;
 	public int stimuliPerTrial;
@@ -108,37 +110,37 @@ public class TextObject : MonoBehaviour {
 
 		if (currentTrial == 1) {
 			DoneWithSet();
-			TrialRoutine = Trial (null, null);
+			TrialRoutine = Trial (null, null, null, null);
 		}
 
 		if (currentTrial == 2){
 			DoneWithSet ();
-			TrialRoutine = Trial (attributeConcept1, attributeConcept2);
+			TrialRoutine = Trial (attributeConcept1, attributeConcept2, attributeConcept1Name, attributeConcept2Name);
 		}
 
 		if (currentTrial == 3){
 			DoneWithSet ();
-			TrialRoutine = Trial (attributeConcept1, attributeConcept2);
+			TrialRoutine = Trial (attributeConcept1, attributeConcept2, attributeConcept1Name, attributeConcept2Name);
 		}
 
 		if (currentTrial == 4){
 			DoneWithSet (); 
-			TrialRoutine = Trial (attributeConcept1, attributeConcept2);
+			TrialRoutine = Trial (attributeConcept1, attributeConcept2, attributeConcept1Name, attributeConcept2Name);
 		}
 
 		if (currentTrial == 5){ 
 			DoneWithSet ();
-			TrialRoutine = Trial (attributeConcept2, attributeConcept1);
+			TrialRoutine = Trial (attributeConcept2, attributeConcept1, attributeConcept2Name, attributeConcept1Name);
 		}
 
 		if (currentTrial == 6){
 			DoneWithSet ();
-			TrialRoutine = Trial (attributeConcept2, attributeConcept1);
+			TrialRoutine = Trial (attributeConcept2, attributeConcept1, attributeConcept2Name, attributeConcept1Name);
 		}
 
 		if (currentTrial == 7){
 			DoneWithSet ();
-			TrialRoutine = Trial (attributeConcept2, attributeConcept1);
+			TrialRoutine = Trial (attributeConcept2, attributeConcept1, attributeConcept2Name, attributeConcept1Name);
 		}
 	}
 
@@ -170,7 +172,7 @@ public class TextObject : MonoBehaviour {
 	/// <summary>
 	/// EVERY TEST TRIAL RUNS HERE
 	/// </summary>
-	IEnumerator Trial(List<string> primeraLista, List<string> segundaLista){
+	IEnumerator Trial(List<string> primeraLista, List<string> segundaLista, string primeraListaName, string segundaListaName){
 
 		centralText.text = null;
 		centralText.offsetZ = 40;
@@ -182,81 +184,123 @@ public class TextObject : MonoBehaviour {
 		correct = false;
 
 		currentSide = Random.Range (1, 2 + 1);
+
 		int randomCategoryAmongGroup = 1;
+
+		int stimuliRandomizer = 0;
 
 
 		if (currentTrial == 1) {
 
-			if (currentSide ==1)
-				conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept1 + "/").Length)) as Texture2D;
-			else
-				conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept2 + "/").Length)) as Texture2D;
-			
+			if (currentSide == 1) {
+				stimuliRandomizer = Random.Range (1, Resources.LoadAll ("Images/" + targetConcept1 + "/").Length);
+				conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + stimuliRandomizer) as Texture2D;
+				currentCategoryName = targetConcept1;
+			} 
+			else {
+				stimuliRandomizer = Random.Range(1, Resources.LoadAll ("Images/" + targetConcept2 + "/").Length);
+				conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + stimuliRandomizer) as Texture2D;
+				currentCategoryName = targetConcept2;
+			}
+
 			square.enabled = true;
 			square.material.mainTexture = conceptTexture;
 		}
 
 		if (currentTrial == 2) {
 
-			if (currentSide == 1)
-				centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
-			else
-				centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
+			if (currentSide == 1) {
+				stimuliRandomizer = Random.Range (0, primeraLista.Count);
+				centralText.text = primeraLista [stimuliRandomizer];
+				currentCategoryName = primeraListaName;
+
+			} else {
+				stimuliRandomizer = Random.Range (0, segundaLista.Count);
+				centralText.text = segundaLista [stimuliRandomizer];
+				currentCategoryName = segundaListaName;
+			}
 		}
 
 		if (currentTrial == 3 | currentTrial == 4) {
 			if (currentSide == 1) {
 				if (randomCategoryAmongGroup == 1) {
-					conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept1 + "/").Length)) as Texture2D;
+					stimuliRandomizer = Random.Range (1, Resources.LoadAll ("Images/" + targetConcept1 + "/").Length);
+					conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + stimuliRandomizer) as Texture2D;
 					square.enabled = true;
 					square.material.mainTexture = conceptTexture;
+					currentCategoryName = targetConcept1;
 				}
-				if (randomCategoryAmongGroup == 2)
-					centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
+				if (randomCategoryAmongGroup == 2) {
+					stimuliRandomizer = Random.Range (0, primeraLista.Count);
+					centralText.text = primeraLista [stimuliRandomizer];
+					currentCategoryName = primeraListaName;
+				}
 
 			} 
 
 			else if (currentSide == 2) {
 				
 				if (randomCategoryAmongGroup == 1) {
-					conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept2 + "/").Length)) as Texture2D;
+					stimuliRandomizer = Random.Range(1, Resources.LoadAll ("Images/" + targetConcept2 + "/").Length);
+					conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + stimuliRandomizer) as Texture2D;
 					square.enabled = true;
 					square.material.mainTexture = conceptTexture;
+					currentCategoryName = targetConcept2;
 				}
-				if (randomCategoryAmongGroup == 2)
-					centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
+				if (randomCategoryAmongGroup == 2) {
+					stimuliRandomizer = Random.Range (0, segundaLista.Count);
+					centralText.text = segundaLista [stimuliRandomizer];
+					currentCategoryName = segundaListaName;
+				}
 			}
 		}
 
 		if (currentTrial == 5) {
-			if (currentSide == 1)
-				centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
-			else
-				centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
+			if (currentSide == 1) {
+				stimuliRandomizer = Random.Range (0, segundaLista.Count);
+				centralText.text = segundaLista [stimuliRandomizer];
+				currentCategoryName = segundaListaName;
+			} 
+
+			else {
+				stimuliRandomizer = Random.Range (0, primeraLista.Count);
+				centralText.text = primeraLista [stimuliRandomizer];
+				currentCategoryName = primeraListaName;
+			}
 		}
 
 
 		if (currentTrial == 6 | currentTrial == 8) {
 			if (currentSide == 1) {
 				if (randomCategoryAmongGroup == 1) {
-					conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept1 + "/").Length)) as Texture2D;
+					stimuliRandomizer = Random.Range (1, Resources.LoadAll ("Images/" + targetConcept1 + "/").Length);
+					conceptTexture = Resources.Load ("Images/" + targetConcept1 + "/image" + stimuliRandomizer) as Texture2D;
 					square.enabled = true;
 					square.material.mainTexture = conceptTexture;
+					currentCategoryName = targetConcept1;
 				}
-				if (randomCategoryAmongGroup == 2)
-					centralText.text = primeraLista [Random.Range (0, primeraLista.Count)];
+				if (randomCategoryAmongGroup == 2) {
+					stimuliRandomizer = Random.Range (0, segundaLista.Count);
+					centralText.text = segundaLista [stimuliRandomizer];
+					currentCategoryName = segundaListaName;
+				}
 
 			} 
 
 			else if (currentSide == 2) {
 
 				if (randomCategoryAmongGroup == 1) {
-					conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + Random.Range(1, Resources.LoadAll("Images/" + targetConcept2 + "/").Length)) as Texture2D;
+					stimuliRandomizer = Random.Range(1, Resources.LoadAll ("Images/" + targetConcept2 + "/").Length);
+					conceptTexture = Resources.Load ("Images/" + targetConcept2 + "/image" + stimuliRandomizer) as Texture2D;
 					square.enabled = true;
 					square.material.mainTexture = conceptTexture;
+					currentCategoryName = targetConcept2;
 				}
-				if (randomCategoryAmongGroup == 2)
-					centralText.text = segundaLista [Random.Range (0, segundaLista.Count)];
+				if (randomCategoryAmongGroup == 2) {
+					stimuliRandomizer = Random.Range (0, primeraLista.Count);
+					centralText.text = primeraLista [stimuliRandomizer];
+					currentCategoryName = primeraListaName;
+				}
 			}
 		}
 
@@ -289,7 +333,7 @@ public class TextObject : MonoBehaviour {
 				elapsedTime = Time.fixedTime - currentTime;
 			}
 			
-		WriteToFile (subjectID, currentTrial.ToString(), currentCategoryName, centralText.text, elapsedTime.ToString(), correct.ToString()); 
+		WriteToFile (subjectID, currentTrial.ToString(), currentCategoryName, stimuliRandomizer.ToString(), elapsedTime.ToString(), correct.ToString()); 
 
 		square.enabled = false;
 
@@ -339,42 +383,33 @@ public class TextObject : MonoBehaviour {
 		try
 		{
 			string line;
-			// Create a new StreamReader, tell it which file to read and what encoding the file
-			// was saved as
-			StreamReader theReader = new StreamReader("./Assets/Resources/Lists/" + fileName + ".csv", Encoding.Default);
-			// Immediately clean up the reader after this block of code is done.
-			// You generally use the "using" statement for potentially memory-intensive objects
-			// instead of relying on garbage collection.
-			// (Do not confuse this with the using directive for namespace at the 
-			// beginning of a class!)
 
-			using (theReader)
+			StreamReader csvReader = new StreamReader("./Assets/Resources/Lists/" + fileName + ".csv", Encoding.Default);
+
+			using (csvReader)
 			{
-				line = theReader.ReadLine();
+				line = csvReader.ReadLine();
 				if(line != null){
+					
 					// While there's lines left in the text file, do this:
 					do {
-						// Do whatever you need to do with the text line, it's a string now
-						// In this example, I split it into arguments based on comma
-						// deliniators, then send that array to DoStuff()
 						string[] entries = line.Split(',');
+
 						if (entries.Length > 0){
-							//Debug.Log(entries[0]);
 							arrayToTransferTo.Add (entries[0]);
 						}
 
 						//DoStuff(entries);
-						line = theReader.ReadLine();
-
+						line = csvReader.ReadLine();
 					}
+
 					while (line != null);
 				} 
 				// Done reading, close the reader and return true to broadcast success    
-				theReader.Close();
+				csvReader.Close();
 				return true;
 			}
 		}
-
 
 		// If anything broke in the try block, we throw an exception with information
 		// on what didn't work
@@ -397,5 +432,4 @@ public class TextObject : MonoBehaviour {
 		file.WriteLine(stringLine);
 		file.Close();	
 	}
-
 }

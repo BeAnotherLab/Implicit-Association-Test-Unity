@@ -28,3 +28,6 @@ sysinfo.txt
 *.jpg.meta
 *.jpeg.meta
 *.png.meta
+
+#log files
+Logs/
