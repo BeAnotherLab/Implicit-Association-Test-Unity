@@ -1,7 +1,7 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{E3DBF7D8-BE8D-75F2-B696-5F51EA7202F6}") = "Implicit Association Test Unity", "Assembly-CSharp.csproj", "{2041D23F-1899-7890-9B66-0AB035181F21}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implicit Association Test Unity", "Assembly-CSharp.csproj", "{2041D23F-1899-7890-9B66-0AB035181F21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

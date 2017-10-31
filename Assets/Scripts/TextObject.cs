@@ -22,6 +22,7 @@ public class TextObject : MonoBehaviour {
 
 	private bool correct = false;
 	private bool onStandby = true;
+	private bool trialHasStarted = false;
 
 	private int currentSide; //1 = left, 2 = right
 	private int currentTrial;
@@ -61,7 +62,7 @@ public class TextObject : MonoBehaviour {
 			GetComponent<TextMesh> ().text = "You're done";
 
 
-		if (!correct && !onStandby) {
+		if (!correct && !onStandby) { ////////////THE BUG THAT GOES TO THE NEXT STIMULI WITH SPACE BAR IS HERE BECAUSE BY DEFAULT CORRECT GOES TO FALSE
 			if(Input.GetKeyDown ("space")) {
 				StartCoroutine(TrialRoutine);
 			}
@@ -75,6 +76,7 @@ public class TextObject : MonoBehaviour {
 
 
 			if (currentTrial == 1) 
+				//while (!Input.GetKeyDown ("space"))
 				InstructionsText (targetConcept1, null, targetConcept2, null, false);
 
 			if (currentTrial == 2) 
@@ -95,9 +97,10 @@ public class TextObject : MonoBehaviour {
 			if (currentTrial == 7)
 				InstructionsText (targetConcept1, attributeConcept2Name, targetConcept2, attributeConcept1Name, true);
 			
-			
-			if(Input.GetKeyDown ("space")) {
+
+			if(Input.GetKeyDown ("space")){ //&& trialHasStarted == false) {
 				StartCoroutine(TrialRoutine);
+				//trialHasStarted = true;
 				onStandby = false;
 				}
 			}
@@ -156,6 +159,7 @@ public class TextObject : MonoBehaviour {
 				currentTrial = currentTrial + 1;
 				count = 0;
 				onStandby = true;
+				trialHasStarted = false;
 			}
 		}
 
@@ -164,6 +168,7 @@ public class TextObject : MonoBehaviour {
 				currentTrial = currentTrial + 1;
 				count = 0;
 				onStandby = true;
+				trialHasStarted = false;
 			}
 		}
 	}
@@ -180,6 +185,8 @@ public class TextObject : MonoBehaviour {
 		centralText.color = Color.white;
 
 		string currentCategoryName = null;
+
+		//trialHasStarted = true;
 
 		correct = false;
 
