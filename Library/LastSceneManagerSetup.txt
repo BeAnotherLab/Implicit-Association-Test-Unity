@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/IAT.unity
+- path: Assets/Likert.unity
   isLoaded: 1
   isActive: 1

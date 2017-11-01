@@ -51,9 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\csvReader.cs" />
-     <Compile Include="Assets\Scripts\csvWrite.cs" />
      <Compile Include="Assets\Scripts\images.cs" />
+     <Compile Include="Assets\Scripts\Likert\csvReader.cs" />
+     <Compile Include="Assets\Scripts\Likert\csvWrite.cs" />
+     <Compile Include="Assets\Scripts\Likert\questionManager.cs" />
+     <Compile Include="Assets\Scripts\Likert\toggleExample.cs" />
      <Compile Include="Assets\Scripts\TextObject.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
