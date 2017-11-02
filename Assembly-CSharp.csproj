@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\images.cs" />
+     <Compile Include="Assets\Scripts\Input screen\EntryScreenManager.cs" />
      <Compile Include="Assets\Scripts\Likert\csvReader.cs" />
      <Compile Include="Assets\Scripts\Likert\csvWrite.cs" />
      <Compile Include="Assets\Scripts\Likert\questionManager.cs" />

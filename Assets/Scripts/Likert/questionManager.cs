@@ -44,11 +44,10 @@ public class questionManager : MonoBehaviour {
 		ActiveToggle ();
 	
 	}
-
-
 		
 	//While not very beautiful I did not find another way to order the array
 	private void FillList(){
+		
 		everyToggle.Add(answer0);
 		everyToggle.Add(answer1);
 		everyToggle.Add(answer2);
@@ -56,6 +55,7 @@ public class questionManager : MonoBehaviour {
 		everyToggle.Add(answer4);
 		everyToggle.Add(answer5);	
 		everyToggle.Add(answer6);
+
 	}
 
 

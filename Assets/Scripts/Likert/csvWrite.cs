@@ -5,24 +5,41 @@ using UnityEngine.UI;
 
 public class csvWrite : MonoBehaviour {
 
-	public string subjectID;
+	private string subjectID;
+	private string age;
+	private string gender;
+	private string handedness;
+
 	private string instructionsMessage;
 
 	// Use this for initialization
 	void Start () {
 		
-		WriteToFile ("subject ID", "condition", "question ID", "value");	
+		WriteToFile ("subject ID", "age", "gender", "handedness", "condition", "question ID", "value");	
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 	}
 
 	public void onNextButtonPressed(){
-		WriteToFile (null, null, null, questionManager.answerValue);
+		
+		WriteToFile (subjectID, age, gender, handedness, null, null, questionManager.answerValue);
+
 	}
 
-	void WriteToFile(string a, string b, string c, string d){
+	public void onParticipantDataEntered(){
+
+		subjectID = EntryScreenManager.nameToWrite;
+		age = EntryScreenManager.ageToWrite;
+		gender = EntryScreenManager.genderToWrite;
+		handedness = EntryScreenManager.handednessToWrite;
+
+	}
+
+	void WriteToFile(string a, string b, string c, string d, string f, string g, string h){
 
 		string stringLine =  a + "," + b + "," + c + "," + d + ",";
 
