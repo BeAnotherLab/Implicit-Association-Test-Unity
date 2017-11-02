@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class csvWrite : MonoBehaviour {
 
-	public static string subjectID, age, gender, handedness;
+	public static string subjectID, age, gender, handedness, questionID, answerValue;
 
 	private string instructionsMessage;
 
@@ -21,8 +21,7 @@ public class csvWrite : MonoBehaviour {
 
 	public void onNextButtonPressed(){
 		
-		WriteToFile (subjectID, age, gender, handedness, null, null, questionManager.answerValue);
-		Debug.Log (handedness + " " + subjectID);
+		WriteToFile (subjectID, age, gender, handedness, null, questionID, answerValue);
 
 	}
 

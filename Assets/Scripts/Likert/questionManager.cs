@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class questionManager : MonoBehaviour {
 
-
-	public static string questionID, answerValue;
 	List<string> questionList = new List<string>();
 
 	public Text questionUI;
@@ -75,11 +74,11 @@ public class questionManager : MonoBehaviour {
 
 		for (int i = 0; i < everyToggle.Count; i++) {
 			if (everyToggle[i].isOn)
-				answerValue = i.ToString();
+				csvWrite.answerValue = i.ToString();
 				everyToggle[i].isOn = false;
 		}
 
-		questionID = currentItem.ToString ();
+		csvWrite.questionID = currentItem.ToString ();
 
 		currentItem ++;
 
@@ -87,10 +86,7 @@ public class questionManager : MonoBehaviour {
 			questionUI.text = questionList [currentItem];
 
 		else if (currentItem >= questionList.Count) {
-			questionUI.text = "That's it!";
-			for (int i = 0; i < everyToggle.Count; i++) {
-				everyToggle[i].interactable = false;
-			}
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		}
 	}
 }
