@@ -81,8 +81,6 @@ public class questionManager : MonoBehaviour {
 
 		questionID = currentItem.ToString ();
 
-		Debug.Log("last item was: " + currentItem);
-
 		currentItem ++;
 
 		if (currentItem < questionList.Count)

@@ -5,17 +5,12 @@ using UnityEngine.UI;
 
 public class csvWrite : MonoBehaviour {
 
-	private string subjectID;
-	private string age;
-	private string gender;
-	private string handedness;
+	public static string subjectID, age, gender, handedness;
 
 	private string instructionsMessage;
 
 	// Use this for initialization
 	void Start () {
-		
-		WriteToFile ("subject ID", "age", "gender", "handedness", "condition", "question ID", "value");	
 
 	}
 	
@@ -27,21 +22,19 @@ public class csvWrite : MonoBehaviour {
 	public void onNextButtonPressed(){
 		
 		WriteToFile (subjectID, age, gender, handedness, null, null, questionManager.answerValue);
+		Debug.Log (handedness + " " + subjectID);
 
 	}
 
 	public void onParticipantDataEntered(){
 
-		subjectID = EntryScreenManager.nameToWrite;
-		age = EntryScreenManager.ageToWrite;
-		gender = EntryScreenManager.genderToWrite;
-		handedness = EntryScreenManager.handednessToWrite;
-
+		WriteToFile ("subject ID", "age", "gender", "handedness", "condition", "question ID", "value");	
 	}
 
-	void WriteToFile(string a, string b, string c, string d, string f, string g, string h){
 
-		string stringLine =  a + "," + b + "," + c + "," + d + ",";
+	void WriteToFile(string a, string b, string c, string d, string e, string f, string g){
+
+		string stringLine =  a + "," + b + "," + c + "," + d + "," + e + "," + f + "," + g;
 
 		System.IO.StreamWriter file = new System.IO.StreamWriter("./Logs/" + subjectID + "_log.csv", true);
 		file.WriteLine(stringLine);

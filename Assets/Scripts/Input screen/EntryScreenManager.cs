@@ -14,13 +14,8 @@ public class EntryScreenManager : MonoBehaviour {
 
 	public Button nextButton;
 
-	private string name;
+	private string participantName;
 	private string age;
-
-	public static string nameToWrite;
-	public static string ageToWrite;
-	public static string genderToWrite;
-	public static string handednessToWrite;
 
 	// Use this for initialization
 	void Start () {
@@ -30,27 +25,28 @@ public class EntryScreenManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (name != null && age != null)
+		if (participantName != null && age != null)
 			nextButton.interactable = true;
 	}
 
 	public void userName() {
-		name = nameField.text;
-		Debug.Log (nameField.text);
+		participantName = nameField.text;
 	}
 
 	public void userAge() {
 		age = ageField.text;
-		Debug.Log (ageField.text);
 	}
 
 	public void OnNextButton () {
 		
-		nameToWrite = name;
-		ageToWrite = age;
+		csvWrite.subjectID = participantName;
+		csvWrite.age = age;
 
-		genderToWrite = genderField.text;
-		handednessToWrite = handednessField.text;
+		csvWrite.gender = genderField.text;
+		csvWrite.handedness = handednessField.text;
+
+		while (Time.fixedDeltaTime >= 3) {
+		}
 
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	

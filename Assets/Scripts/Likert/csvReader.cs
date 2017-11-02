@@ -17,13 +17,6 @@ public class csvReader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
-		//Debug.Log (questions.Count);
-
-		for(int i = 0; i < questionnaireInput.Count; i++){
-		//	Debug.Log (questionnaireInput[i]);
-		}
 			
 	}
 
