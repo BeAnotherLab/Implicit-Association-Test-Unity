@@ -28,27 +28,24 @@ public class questionManager : MonoBehaviour {
 		myToggleGroup = FindObjectOfType<ToggleGroup>();
 		questionList = csvReader.questionnaireInput;
 		//everyToggle = GameObject.FindObjectsOfType<Toggle>(); //optimal way for autonomy and adapts to bigger arrays of toggles, but didn't find a way to order the array
+
 		FillList();
 
-		questionUI.text = questionList[Random.Range(1, questionList.Count)];
+		questionUI.text = questionList[currentItem];
 
 		nextButton.interactable = false;
 	}
 
+
+
 	// Update is called once per frame
 	void Update () {
-
-		if (Input.GetKeyDown ("space")) {
-			
-			if (currentItem < questionList.Count) {
-				currentItem++;
-				questionUI.text = questionList [currentItem];
-			}
-		}
-
+		
 		ActiveToggle ();
-			
+	
 	}
+
+
 		
 	//While not very beautiful I did not find another way to order the array
 	private void FillList(){
@@ -61,19 +58,18 @@ public class questionManager : MonoBehaviour {
 		everyToggle.Add(answer6);
 	}
 
+
+
 	private void ActiveToggle() {
-		/*
-		for (int i = 0; i < everyToggle.Count; i++){
-			if (everyToggle [i].isOn) 
-				Debug.Log ("currently on is " + i);
-		}*/
 
 		if (myToggleGroup.AnyTogglesOn ()) 
 			nextButton.interactable = true;
+		
 		else if (myToggleGroup.AnyTogglesOn () == false)
 			nextButton.interactable = false;
-		
 	}
+
+
 
 	public void OnNextButton() {
 
@@ -83,7 +79,20 @@ public class questionManager : MonoBehaviour {
 				everyToggle[i].isOn = false;
 		}
 
-		questionUI.text = questionList[Random.Range(1, questionList.Count)];
+		questionID = currentItem.ToString ();
 
+		Debug.Log("last item was: " + currentItem);
+
+		currentItem ++;
+
+		if (currentItem < questionList.Count)
+			questionUI.text = questionList [currentItem];
+
+		else if (currentItem >= questionList.Count) {
+			questionUI.text = "That's it!";
+			for (int i = 0; i < everyToggle.Count; i++) {
+				everyToggle[i].interactable = false;
+			}
+		}
 	}
 }
